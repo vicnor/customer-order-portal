@@ -39,8 +39,8 @@
             </exclusions>
         </dependency>
         <dependency>
-            <groupId>dk.apendo.casemanagement</groupId>
-            <artifactId>requests-data</artifactId>
+            <groupId>dk.apendo.customerorder</groupId>
+            <artifactId>customer-order-portal-api-data</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
         <dependency>

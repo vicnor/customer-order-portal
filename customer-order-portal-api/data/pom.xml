@@ -7,7 +7,7 @@
         <groupId>dk.apendo.customerorder</groupId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
-    <groupId>dk.apendo.casemanagement</groupId>
+    <groupId>dk.apendo.customerorder</groupId>
     <artifactId>customer-order-portal-api-data</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>customer-order-portal-api-data</name>

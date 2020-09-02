@@ -1,0 +1,1 @@
+INSERT INTO CUSTOMERS (name) VALUES ('Victor')
