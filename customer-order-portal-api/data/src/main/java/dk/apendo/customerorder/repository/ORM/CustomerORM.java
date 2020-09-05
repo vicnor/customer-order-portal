@@ -1,6 +1,7 @@
 package dk.apendo.customerorder.repository.ORM;
 
 import javax.persistence.*;
+import java.util.Objects;
 
 @Entity
 @Table(name = "CUSTOMERS")
@@ -38,5 +39,20 @@ public class CustomerORM {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        CustomerORM that = (CustomerORM) o;
+        return Objects.equals(id, that.id) &&
+                Objects.equals(firstName, that.firstName) &&
+                Objects.equals(lastName, that.lastName);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, firstName, lastName);
     }
 }

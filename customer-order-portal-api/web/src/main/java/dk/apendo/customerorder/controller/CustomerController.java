@@ -2,10 +2,7 @@ package dk.apendo.customerorder.controller;
 
 import dk.apendo.customerorder.model.Customer;
 import dk.apendo.customerorder.service.CustomerService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -27,6 +24,17 @@ public class CustomerController {
     @GetMapping("{id}")
     public Customer findById(@PathVariable Integer id) {
         return customerService.findById(id);
+    }
+
+    @PostMapping("")
+    public Customer add(@RequestBody Customer customer) {
+        Customer addedCustomer = customerService.add(customer);
+        return addedCustomer;
+    }
+
+    @DeleteMapping("{id}")
+    public void deleteById(@PathVariable Integer id) {
+        customerService.deleteById(id);
     }
 
 }
