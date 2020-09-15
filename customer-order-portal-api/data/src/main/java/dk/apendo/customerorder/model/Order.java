@@ -15,7 +15,7 @@ public class Order extends BaseEntity {
     @Column(name="CREATION_DATE")
     private LocalDateTime creationDate;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "CUSTOMER_ID", nullable = false)
     private Customer customer;
 
