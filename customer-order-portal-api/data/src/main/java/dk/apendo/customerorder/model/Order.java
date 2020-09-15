@@ -25,4 +25,43 @@ public class Order extends BaseEntity {
 
     // TODO: Add OrderDetails
 
+
+    public LocalDateTime getCreationDate() {
+        return creationDate;
+    }
+
+    public void setCreationDate(LocalDateTime creationDate) {
+        this.creationDate = creationDate;
+    }
+
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Order order = (Order) o;
+        return Objects.equals(creationDate, order.creationDate) &&
+                Objects.equals(customer, order.customer) &&
+                Objects.equals(product, order.product);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(creationDate, customer, product);
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
+    }
+
+    public Product getProduct() {
+        return product;
+    }
+
+    public void setProduct(Product product) {
+        this.product = product;
+    }
 }

@@ -38,7 +38,8 @@ public class CustomerService implements CrudService<Customer, Integer> {
 
     @Override
     public void deleteById(Integer id) {
-        customerRepository.findById(id).orElseThrow(() -> new RuntimeException("Could not find customer with id " + id));
+        Customer customer = customerRepository.findById(id).orElseThrow(() -> new RuntimeException("Could not find customer with id " + id));
+        customerRepository.delete(customer);
     }
 
 }
