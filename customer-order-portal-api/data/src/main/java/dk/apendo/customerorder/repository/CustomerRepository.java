@@ -1,7 +1,7 @@
 package dk.apendo.customerorder.repository;
 
-import dk.apendo.customerorder.repository.ORM.CustomerORM;
+import dk.apendo.customerorder.model.Customer;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface CustomerRepository extends JpaRepository<CustomerORM, Integer> {
+public interface CustomerRepository extends JpaRepository<Customer, Integer> {
 }

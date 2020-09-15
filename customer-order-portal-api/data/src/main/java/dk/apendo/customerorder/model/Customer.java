@@ -1,18 +1,24 @@
 package dk.apendo.customerorder.model;
 
-public class Customer {
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
-    private Integer id;
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
+
+@Entity
+@Table(name = "CUSTOMERS")
+public class Customer extends BaseEntity {
+
+    @Column(name = "FIRST_NAME")
     private String firstName;
+
+    @Column(name = "LAST_NAME")
     private String lastName;
 
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
+    @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
+    @JsonIgnore
+    private List<Order> orders = new ArrayList<>();
 
     public String getFirstName() {
         return firstName;
@@ -28,5 +34,17 @@ public class Customer {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+
+    public List<Order> getOrders() {
+        return orders;
+    }
+
+    public void setOrders(List<Order> orders) {
+        this.orders = orders;
+    }
+
+    public void addOrder(Order order) {
+        this.orders.add(order);
     }
 }

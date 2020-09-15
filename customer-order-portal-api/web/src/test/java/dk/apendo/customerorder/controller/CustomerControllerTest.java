@@ -2,8 +2,6 @@ package dk.apendo.customerorder.controller;
 
 import dk.apendo.customerorder.SuperTest;
 import dk.apendo.customerorder.model.Customer;
-import dk.apendo.customerorder.repository.ORM.CustomerORM;
-import dk.apendo.customerorder.service.utils.CustomerServiceUtils;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.web.servlet.MockMvc;
@@ -26,9 +24,6 @@ public class CustomerControllerTest extends SuperTest {
     @Autowired
     private MockMvc mvc;
 
-    @Autowired
-    private CustomerServiceUtils customerServiceUtils;
-
     @Test
     public void testGetById() throws Exception {
 
@@ -36,12 +31,12 @@ public class CustomerControllerTest extends SuperTest {
         String firstName = "Hans";
         String lastName = "Jensen";
 
-        CustomerORM customerORM = new CustomerORM();
-        customerORM.setId(id);
-        customerORM.setFirstName(firstName);
-        customerORM.setLastName(lastName);
+        Customer customer = new Customer();
+        customer.setId(id);
+        customer.setFirstName(firstName);
+        customer.setLastName(lastName);
 
-        when(customerRepository.findById(id)).thenReturn(Optional.of(customerORM));
+        when(customerRepository.findById(id)).thenReturn(Optional.of(customer));
 
         mvc.perform(get("/customers/" + id))
                 .andExpect(status().isOk())
@@ -71,12 +66,12 @@ public class CustomerControllerTest extends SuperTest {
         String firstName = "Hans";
         String lastName = "Jensen";
 
-        CustomerORM customerORM = new CustomerORM();
-        customerORM.setId(id);
-        customerORM.setFirstName(firstName);
-        customerORM.setLastName(lastName);
+        Customer customer = new Customer();
+        customer.setId(id);
+        customer.setFirstName(firstName);
+        customer.setLastName(lastName);
 
-        when(customerRepository.findById(id)).thenReturn(Optional.of(customerORM));
+        when(customerRepository.findById(id)).thenReturn(Optional.of(customer));
 
         mvc.perform(delete("/customers/" + id))
                 .andExpect(status().isOk());
@@ -106,9 +101,7 @@ public class CustomerControllerTest extends SuperTest {
         customer.setFirstName(firstName);
         customer.setLastName(lastName);
 
-        CustomerORM customerORM = customerServiceUtils.asCustomerORM(customer);
-
-        when(customerRepository.save(customerORM)).thenReturn(customerORM);
+        when(customerRepository.save(customer)).thenReturn(customer);
 
         mvc.perform(post("/customers").content(new Gson().toJson(customer)).contentType("application/json"))
                 .andExpect(status().isOk())
